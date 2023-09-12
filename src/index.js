@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const path = require('path');
 const expressSession = require('express-session');
 const FileStore = require('session-file-store')(expressSession);
+const renderView = require('./router/view.router');
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -30,6 +31,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan('dev'));
 
+app.use('/', renderView);
+
 app.get('/*', (req, res) => {
   res.send('404 Page not found');
 });
@@ -37,3 +40,13 @@ app.get('/*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server starting on PORT ${PORT}`);
 });
+
+
+// npx sequelize-cli model:generate --name User --attributes login:string,name:string,password:string,telephone:string,coordinateX:string,coordinateY:string
+// npx sequelize-cli model:generate --name Curier --attributes login:string,name:string,password:string,telephone:string
+// npx sequelize-cli model:generate --name Food --attributes name:string,about:string,img:string
+// npx sequelize-cli model:generate --name Order --attributes coordinateX:string,coordinateY:string,price:string,discount:string,status:string,userId:integer,foodId:integer,curierId:integer
+// npx sequelize-cli seed:generate --name Users
+// npx sequelize-cli seed:generate --name Curiers
+// npx sequelize-cli seed:generate --name Foods
+// npx sequelize-cli seed:generate --name Orders

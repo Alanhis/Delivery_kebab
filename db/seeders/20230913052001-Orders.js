@@ -1,0 +1,83 @@
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.bulkInsert('Orders', [
+      {
+        coordinateX: '55.665893',
+        coordinateY: '37.558068',
+        price: '700',
+        discount: '50',
+        status: 'New',
+        userId: 1,
+        curierId: 1,
+        foodId: 1,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        coordinateX: '55.655209',
+        coordinateY: '37.743956',
+        price: '400',
+        discount: '30',
+        status: 'New',
+        userId: 2,
+        curierId: 2,
+        foodId: 2,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        coordinateX: '55.737233',
+        coordinateY: '37.735180',
+        price: '250',
+        discount: '60',
+        status: 'New',
+        userId: 3,
+        curierId: 3,
+        foodId: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        coordinateX: '',
+        coordinateY: '',
+        price: '300',
+        discount: '50',
+        status: 'New',
+        userId: 1,
+        curierId: 1,
+        foodId: 4,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        coordinateX: '55.760050',
+        coordinateY: '37.699547',
+        price: '450',
+        discount: '45',
+        status: 'New',
+        userId: 2,
+        curierId: 2,
+        foodId: 5,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        coordinateX: '55.761548',
+        coordinateY: '37.653532',
+        price: '170',
+        discount: '20',
+        status: 'New',
+        userId: 3,
+        curierId: 3,
+        foodId: 6,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    ], {});
+  },
+
+  async down(queryInterface, Sequelize) {
+    await queryInterface.bulkDelete('Orders', null, {});
+  },
+};
