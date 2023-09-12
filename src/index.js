@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const path = require('path');
 const expressSession = require('express-session');
 const FileStore = require('session-file-store')(expressSession);
+const renderView = require('./router/view.router');
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -29,6 +30,8 @@ app.use(express.static(path.join(process.cwd(), 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan('dev'));
+
+app.use('/', renderView);
 
 app.get('/*', (req, res) => {
   res.send('404 Page not found');
