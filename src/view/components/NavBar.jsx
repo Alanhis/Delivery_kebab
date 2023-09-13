@@ -29,7 +29,7 @@ module.exports = function NavBar({ user }) {
                 <a className="nav-link fs-4" href="#">
                   {user.name}
                 </a>
-                <a className="nav-link fs-4" href="/logout">
+                <a className="nav-link fs-4" href="/user/logout">
                   Выход
                 </a>
               </>
