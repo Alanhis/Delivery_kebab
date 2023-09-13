@@ -17,7 +17,7 @@ router.post('/login', async (req, res) => {
           login: user.login,
           role: 'user',
         };
-        res.redirect('/');
+        res.redirect('/account');
       } else {
         res.redirect('/');
       }

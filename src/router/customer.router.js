@@ -8,14 +8,13 @@ const Customer = require('../view/Customer');
 const { Item, Order } = require('../../db/models');
 
 router.get('/', async (req, res) => {
-    // const { id } = req.params;
     const { user } = req.session;
     try {
         const activeOrder = await Item.findAll({ 
             include: [{
                 model: Order,
                 where: {
-                    // userId: id,
+                    userId: user.id,
                     [Op.or]: [{ status: 'Ordered' }, { status: 'Delivered'}],
                 },
             }],
@@ -23,7 +22,7 @@ router.get('/', async (req, res) => {
         });
         const completeOrder = await Order.findAll({
             where: {
-                // userId: user,
+                userId: user.id,
                 status: 'Completed'
             },
             include: { model: Item, attributes: [ 'name' ] },
