@@ -9,7 +9,7 @@ module.exports = function AccountCard({ food }) {
             <h5 className="card-title">{food.name}</h5>
             <p className="card-text item-date">{food.about}</p>
             <p className="card-text item-price">{food.price}</p>
-            <button type='button' className="btn btn-card">Выкупить</button>
+            <button type='button' className="btn btn-primary">Выкупить</button>
         </div>
     </div>
   );

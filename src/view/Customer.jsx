@@ -3,7 +3,6 @@ const Layout = require('./Layout');
 const CardItem = require('./components/CardItem');
 
 module.exports = function Customer({ foods }) {
-    console.log(foods);
     return (
         <Layout>
             {/* карточки товаров в сортировке от новых к старым */}
