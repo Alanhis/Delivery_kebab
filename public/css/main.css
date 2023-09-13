@@ -1,0 +1,13 @@
+/*NavBar*/
+.nav__logo_img {
+  height: 110px;
+}
+
+.container-fluid {
+  display: flex;
+ justify-content: space-between;
+}
+
+.user-name__title {
+   margin: auto 0;
+}
