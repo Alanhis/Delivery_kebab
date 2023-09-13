@@ -32,7 +32,7 @@ module.exports = function NavBar({ user }) {
                 <a className='nav-link fs-4' href='/acount'>
                   Личный кабинет
                 </a>
-                <a className='nav-link fs-4' href='/logout'>
+                <a className="nav-link fs-4" href="/user/logout">
                   Выход
                 </a>
                 <div className='user-name mx-5'>

@@ -5,7 +5,7 @@ function Login() {
   return (
     <Layout>
       <form
-        action="/login"
+        action="/user/login"
         method="POST"
         className="login-container"
         style={{
@@ -52,14 +52,14 @@ function Login() {
         <div>
             <p>Роль:</p>
           <div className="form-check">
-            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-            <label className="form-check-label" htmlFor="flexRadioDefault1">
+            <input className="form-check-input" type="radio" name="flexRadioDefault" id="user" value="user" />
+            <label className="form-check-label" htmlFor="user">
               Заказчик
             </label>
           </div>
           <div className="form-check">
-            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
-            <label className="form-check-label" htmlFor="flexRadioDefault2">
+            <input className="form-check-input" type="radio" name="flexRadioDefault" id="curier" value="curier" checked />
+            <label className="form-check-label" htmlFor="curier">
               Курьер
             </label>
           </div>

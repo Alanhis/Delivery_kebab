@@ -2,11 +2,7 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-<<<<<<<< HEAD:db/seeders/20230913051956-Items.js
   async up(queryInterface, Sequelize) {
-========
-  async up (queryInterface, Sequelize) {
->>>>>>>> dev:db/seeders/20230913052000-Items.js
     await queryInterface.bulkInsert('Items', [
       {
         name: 'Биг Спешиал Ростбиф Комбо',
