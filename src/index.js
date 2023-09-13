@@ -7,6 +7,7 @@ const expressSession = require('express-session');
 const FileStore = require('session-file-store')(expressSession);
 const renderView = require('./router/view.router');
 const userRouter = require('./router/user.router');
+const customerView = require('./router/customer.router');
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -34,6 +35,7 @@ app.use(morgan('dev'));
 
 app.use('/', renderView);
 app.use('/user', userRouter); // отвечает за всю логику связанную с юзером (Регистр, Логин, Логаут)
+app.use('/account', customerView);
 
 app.get('/*', (req, res) => {
   res.send('404 Page not found');
