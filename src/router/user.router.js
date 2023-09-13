@@ -30,7 +30,7 @@ router.post('/login', async (req, res) => {
           login: user.login,
           role: 'curier',
         };
-        res.redirect('/');
+        res.redirect('/curier');
       } else {
         res.redirect('/');
       }
