@@ -4,7 +4,6 @@ const CardItem = require('./components/CardItem');
 const StatusCard = require('./components/StatusCard');
 
 module.exports = function Customer({ user, foods, orders }) {
-    console.log(orders);
     return (
         <Layout user={user}>
             <div className='row row-cols-1 row-cols-md-3 g-4' style={{marginTop: '3%', marginBottom: '8%'}}>
