@@ -1,6 +1,6 @@
 const React = require('react');
 
-module.exports = function OrderCard({ order }) {
+module.exports = function OrderCard({ order, user }) {
   const orderImg = order?.Item?.img.replace('public/', '');
   return (
     <div className='card' style={{ width: '18rem' }}>
@@ -8,9 +8,18 @@ module.exports = function OrderCard({ order }) {
       <div className='card-body'>
         <h5 className='card-title'>{order?.Item?.name}</h5>
         <p className='card-text'>{order?.Item?.about}</p>
-        <a href='#' className='btn btn-dark'>
+        <p className='card-text'>
+          Цена:{' '}
+          <span className='text-decoration-line-through'>
+            {order?.price} руб
+          </span>{' '}
+        </p>
+        <p className='card-text'>
+          Цена со скидкой: {order?.discount} руб
+        </p>
+        <button type='button' className='btn btn-dark' disabled={!user}>
           Выкупить
-        </a>
+        </button>
       </div>
     </div>
   );

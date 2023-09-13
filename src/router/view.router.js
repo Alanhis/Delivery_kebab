@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const renderTemplate = require('../lib/renderTemplate');
-const { Item } = require('../../db/models');
 
 const Home = require('../view/Home');
 const Login = require('../view/Login');
@@ -12,11 +11,18 @@ const router = express.Router();
 const { Order, User, Item } = require('../../db/models');
 
 router.get('/', async (req, res) => {
-  const orders = await Order.findAll({
+  const allNewOrders = await Order.findAll({
+    where: { status: 'New' },
     include: [{ model: Item }],
   });
-
-  renderTemplate(Home, { orders, user: req.session.user }, res);
+  const newOrdersForCourier = await Order.findAll({
+    where: {
+      curierId: req.session?.user?.id,
+      status: 'New',
+    },
+    include: [{ model: Item }],
+  });
+  renderTemplate(Home, { allNewOrders, newOrdersForCourier, user: req.session.user }, res);
 });
 
 router.get('/login', async (req, res) => {
