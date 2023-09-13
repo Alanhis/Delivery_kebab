@@ -6,6 +6,7 @@ const path = require('path');
 const expressSession = require('express-session');
 const FileStore = require('session-file-store')(expressSession);
 const renderView = require('./router/view.router');
+const customerView = require('./router/customer.router');
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -32,6 +33,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 app.use('/', renderView);
+app.use('/account', customerView);
 
 app.get('/*', (req, res) => {
   res.send('404 Page not found');
