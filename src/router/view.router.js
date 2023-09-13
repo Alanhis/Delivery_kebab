@@ -6,9 +6,14 @@ const Home = require('../view/Home');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  // console.log('req.session', req.session);
-  renderTemplate(Home, { user: req.session.user }, res);
+const { Order, User, Item } = require('../../db/models');
+
+router.get('/', async (req, res) => {
+  const orders = await Order.findAll({
+    include: [{ model: Item }],
+  });
+
+  renderTemplate(Home, { orders, user: req.session.user }, res);
 });
 
 module.exports = router;
