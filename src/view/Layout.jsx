@@ -2,7 +2,7 @@ const React = require('react');
 const NavBar = require('./components/NavBar');
 const Footer = require('./components/Footer');
 
-function Layout({ user, title, children }) {
+function Layout({ place, user, title, children }) {
   return (
     <html lang='en'>
       <head>
@@ -14,6 +14,7 @@ function Layout({ user, title, children }) {
           src='/js/bootstrap.bundle.min.js'
           crossOrigin='anonymous'
         />
+        {place ? <script src={`https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=${place}`} type="text/javascript" /> : ''}
         <script defer src='/js/application.js' />
         <link
           href='/css/bootstrap.min.css'
@@ -34,9 +35,9 @@ function Layout({ user, title, children }) {
             </div>
           </div>
         </main>
-        <footer>
+        {/* <footer>
           <Footer />
-        </footer>
+        </footer> */}
       </body>
     </html>
   );

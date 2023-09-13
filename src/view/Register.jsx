@@ -3,11 +3,11 @@ const Layout = require('./Layout');
 
 function Register() {
   return (
-    <Layout>
+    <Layout place>
       <form
-        action="/login"
-        method="POST"
-        className="login-container"
+        // action="/user/register1"
+        // method="POST"
+        className="register-container"
         style={{
           display: 'flex',
           flexDirection: 'column',
@@ -52,18 +52,19 @@ function Register() {
         <div>
             <p>Роль:</p>
           <div className="form-check">
-            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-            <label className="form-check-label" htmlFor="flexRadioDefault1">
+            <input className="form-check-input" type="radio" name="flexRadioDefault" id="user" value="user" />
+            <label className="form-check-label" htmlFor="user">
               Заказчик
             </label>
           </div>
           <div className="form-check">
-            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
-            <label className="form-check-label" htmlFor="flexRadioDefault2">
+            <input className="form-check-input" type="radio" name="flexRadioDefault" id="curier" value="curier" checked />
+            <label className="form-check-label" htmlFor="curier">
               Курьер
             </label>
           </div>
         </div>
+        <div id="map" data-x="55.758031" data-y="37.710387" style={{ width: '500px', height: '370px' }} />
         <label htmlFor="telephone" className="form-label">
           Телефон
           <input
