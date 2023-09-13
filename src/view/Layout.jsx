@@ -2,7 +2,7 @@ const React = require('react');
 const NavBar = require('./components/NavBar');
 const Footer = require('./components/Footer');
 
-function Layout({ title, children }) {
+function Layout({ user, title, children }) {
   return (
     <html lang='en'>
       <head>
@@ -25,7 +25,7 @@ function Layout({ title, children }) {
       </head>
       <body>
         <header>
-          <NavBar />
+          <NavBar user={user} />
         </header>
         <main>
           <div className='container'>
