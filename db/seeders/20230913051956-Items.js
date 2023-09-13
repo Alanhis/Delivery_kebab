@@ -1,7 +1,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('Foods', [
+    await queryInterface.bulkInsert('Items', [
       {
         name: 'Биг Спешиал Ростбиф Комбо',
         about: 'Комбо состоит из Биг Спешиал Ростбиф, Большой порции Картошки-фри и Кока-колы',
@@ -76,6 +76,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Foods', null, {});
+    await queryInterface.bulkDelete('Items', null, {});
   },
 };
