@@ -3,9 +3,8 @@ const btnOrder = document.getElementById('orderStatus');
 
 newBtnOrder.addEventListener('click', (event) => {
     event.preventDefault();
-    console.log('New Order!');
-    
-})
+    window.location = '/curier/newOrder';
+});
 
 
 btnOrder.addEventListener('click', async (event) => {

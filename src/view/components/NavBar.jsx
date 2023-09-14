@@ -39,14 +39,17 @@ module.exports = function NavBar({ user }) {
             )}
             {user ? (
               <>
-                <a className='nav-link fs-4' href='/acount'>
+                <a className='nav-link fs-4' href='/curier'>
                   Личный кабинет
                 </a>
                 <a className='nav-link fs-4' href='/user/logout'>
                   Выход
                 </a>
                 <div className='user-name mx-5'>
-                  <p className='user-name__title fs-4'> Привет, {user.name}!</p>
+                  <p className='user-name__title fs-4'> 
+                    Привет, {user?.role === 'curier' ? 
+                      `курьер ${user.name}` : 
+                      `клиент ${user.name}`} !</p>
                 </div>
               </>
             ) : (

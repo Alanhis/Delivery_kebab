@@ -4,6 +4,7 @@ const { Op } = require("sequelize");
 
 const render = require("../lib/renderTemplate");
 const CurierView = require("../view/Curier");
+const AddSeller = require('../view/AddSeller');
 
 const { Order, Item, Curier } = require('../../db/models');
 
@@ -48,7 +49,46 @@ router
     })
     .delete('/', async (req, res) => {
         const { user } = req.session;
+        const { id } = req.body;
+
+        console.log(id);
+
+        try {
+            await Order.destroy({
+                where: { id }
+            });
+            res.sendStatus(200);
+        } catch (error) {
+            console.error(error);
+            res.sendStatus(400);
+        }
 
     });
+
+
+//newOrder
+router.get('/newOrder', async (req, res) => {
+    try {
+      const food = await Item.findAll({ raw: true });
+      render(AddSeller, { food, user: req.session.user }, res);
+    } catch (error) {
+      console.error(error);
+    }
+  });
+  
+router.post('/newOrder', async (req, res) => {
+try {
+    const {
+    coordinateX, coordinateY, price, discount, foodId,
+    } = req.body;
+    const curierId = req.session.user.id;
+    await Order.create({
+    coordinateX, curierId, coordinateY, price, discount, foodId, status: 'New',
+    });
+    res.send({ status: 200 });
+} catch (error) {
+    console.log(error);
+}
+});
 
 module.exports = router;

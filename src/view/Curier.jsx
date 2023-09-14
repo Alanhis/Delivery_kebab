@@ -5,7 +5,7 @@ module.exports = function Curier( { user, newor, ordered, delivered, completed }
     return (
         <Layout user={user}>
         <div style={{marginTop: '3%', marginBottom: '8%'}}>
-            <button type="button" class="btn btn-primary" id='newOrder'>Создать новый заказ</button>
+            <button type="button" className="btn btn-primary" id='newOrder'>Создать новый заказ</button>
             <table class="table" className='row row-cols-1' >
                 <thead>
                     <tr>
@@ -24,8 +24,8 @@ module.exports = function Curier( { user, newor, ordered, delivered, completed }
                             <td>{order['Item.name']}</td>
                             <th>{order.id}</th>
                             <td>{order.price}</td>
-                            <td>
-                                <button type="button" class="btn btn-light" id='deleteNewOrder' name='deleteNewOrder'>
+                            <td> 
+                                <button type="button" className='btn btn-light deleteNewOrder' data-id={order.id}>
                                     Удалить
                                 </button>
                             </td>
@@ -81,7 +81,7 @@ module.exports = function Curier( { user, newor, ordered, delivered, completed }
                 }
             </table>
         </div>
-        {/* <script defer src='/js/statusOrder.js'/> */}
+        <script defer src='/js/statusOrder.js'/>
         <script defer src='/js/deleteNewOrder.js' />
         </Layout>
     );

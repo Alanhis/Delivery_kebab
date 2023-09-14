@@ -6,7 +6,6 @@ const Home = require('../view/Home');
 const HomeCurier = require('../view/HomeCurier');
 const Login = require('../view/Login');
 const Register = require('../view/Register');
-const AddSeller = require('../view/AddSeller');
 
 const router = express.Router();
 
@@ -26,23 +25,7 @@ router.get('/homecurier', async (req, res) => {
     where: { curierId: req.session?.user?.id },
     include: [{ model: Item }],
   });
-  console.log('---------------', curierOrders);
   renderTemplate(HomeCurier, { curierOrders, user: req.session?.user }, res);
-});
-
-router.post('/add', async (req, res) => {
-  try {
-    const {
-      coordinateX, coordinateY, price, discount, foodId,
-    } = req.body;
-    const curierId = req.session.user.id;
-    await Order.create({
-      coordinateX, curierId, coordinateY, price, discount, foodId, status: 'New',
-    });
-    res.send({ status: 200 });
-  } catch (error) {
-    console.log(error);
-  }
 });
 
 router.get('/login', async (req, res) => {
