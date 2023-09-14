@@ -15,6 +15,7 @@ router.post('/login', async (req, res) => {
         req.session.user = {
           id: user.id,
           login: user.login,
+          name: user.name,
           role: 'user',
         };
         res.redirect('/account');
@@ -28,6 +29,7 @@ router.post('/login', async (req, res) => {
         req.session.user = {
           id: user.id,
           login: user.login,
+          name: user.name,
           role: 'curier',
         };
         res.redirect('/');
