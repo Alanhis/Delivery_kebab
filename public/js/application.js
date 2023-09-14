@@ -74,13 +74,22 @@ if (register) {
     }
   });
 }
-
-
-
-
-
-
-
-
-
-
+if (addForm) {
+  addForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const info = new FormData(addForm);
+    info.append('coordinateX', data[0]);
+    info.append('coordinateY', data[1]);
+    const responce = await fetch('http://localhost:3000/add', {
+      method: 'post',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(Object.fromEntries(info)),
+    });
+    if (responce.status === 200) {
+      window.location = '/';
+    }
+  });
+}
