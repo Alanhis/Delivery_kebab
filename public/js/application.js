@@ -14,7 +14,8 @@ function init() {
   const lat = start[0];
   const long = start[1];
   let coords = [lat, long];
-  Map = new ymaps.Map(id, { // initialize map
+  Map = new ymaps.Map(id, {
+    // initialize map
     center: coords,
     zoom,
     controls: ['zoomControl'],
@@ -28,17 +29,25 @@ function init() {
   });
   Map.controls.add(search);
   /* Adding mark on map */
-  const mark = new ymaps.Placemark([lat, long], {}, { preset: 'islands#redIcon', draggable: true });
+  const mark = new ymaps.Placemark(
+    [lat, long],
+    {},
+    { preset: 'islands#redIcon', draggable: true },
+  );
   Map.geoObjects.add(mark);
   function save() {
     const newCoords = [coords[0].toFixed(6), coords[1].toFixed(6)];
     mark.getOverlaySync().getData().geometry.setCoordinates(newCoords);
     data = newCoords;
   }
-  mark.events.add('dragend', function () {
-    coords = this.geometry.getCoordinates();
-    save();
-  }, mark);
+  mark.events.add(
+    'dragend',
+    function () {
+      coords = this.geometry.getCoordinates();
+      save();
+    },
+    mark,
+  );
   /* Event click */
   Map.events.add('click', (e) => {
     coords = e.get('coords');
@@ -74,7 +83,7 @@ if (register) {
       window.location = '/';
     }
     if (responce.status === 400) {
-      alert('Пользователь с таким логином уже существует!!')
+      alert('Пользователь с таким логином уже существует!!');
     }
   });
 }
@@ -96,7 +105,7 @@ if (login) {
       window.location = '/';
     }
     if (responce.status === 400) {
-      alert('Проверьте правильность введения данных!')
+      alert('Проверьте правильность введения данных!');
     }
   });
 }
@@ -106,7 +115,7 @@ if (addForm) {
     const info = new FormData(addForm);
     info.append('coordinateX', data[0]);
     info.append('coordinateY', data[1]);
-    const responce = await fetch('/curier/newOrder', { 
+    const responce = await fetch('/curier/newOrder', {
       method: 'post',
       headers: {
         Accept: 'application/json',
@@ -117,5 +126,33 @@ if (addForm) {
     if (responce.status === 200) {
       window.location = '/';
     }
+  });
+}
+
+const rebuy = document.querySelectorAll('.re_buy');
+
+if (rebuy) {
+  rebuy.forEach((element) => {
+    const { id } = element.dataset;
+
+    element.addEventListener('click', async (e) => {
+      e.preventDefault();
+
+      const responce = await fetch('/account/ordered', {
+        method: 'PUT',
+
+        headers: {
+          Accept: 'application/json',
+
+          'Content-Type': 'application/json',
+        },
+
+        body: JSON.stringify({ id }),
+      });
+
+      if (responce.status === 200) {
+        window.location = '/account';
+      }
+    });
   });
 }

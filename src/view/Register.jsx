@@ -3,7 +3,7 @@ const Layout = require('./Layout');
 
 function Register() {
   return (
-    <Layout place>
+    <Layout place="30c5ab22-e7fa-4f57-8369-b3e0f20e52f5">
       <form
         className="register-container"
         style={{
