@@ -65,7 +65,6 @@ router
             await Order.create({
             coordinateX, curierId, coordinateY, price, discount, foodId, status: 'New',
             });
-            Сделайте коммит или спрячьте ваши изменения перед слиянием веток.
             res.send({ status: 200 });
         } catch (error) {
             console.log(error);
