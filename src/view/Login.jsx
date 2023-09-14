@@ -5,8 +5,6 @@ function Login() {
   return (
     <Layout>
       <form
-        action="/user/login"
-        method="POST"
         className="login-container"
         style={{
           display: 'flex',
@@ -50,7 +48,7 @@ function Login() {
           />
         </label>
         <div>
-            <p>Роль:</p>
+          <p>Роль:</p>
           <div className="form-check">
             <input className="form-check-input" type="radio" name="flexRadioDefault" id="user" value="user" />
             <label className="form-check-label" htmlFor="user">
