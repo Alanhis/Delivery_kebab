@@ -8,6 +8,7 @@ const FileStore = require('session-file-store')(expressSession);
 const renderView = require('./router/view.router');
 const userRouter = require('./router/user.router');
 const customerView = require('./router/customer.router');
+const curierView = require('./router/curier.router');
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -21,7 +22,7 @@ const sessionConfig = {
   resave: false,
   saveUninitialized: false,
   cookie: {
-    maxAge: 20 * 60 * 1000, // устанавливаем сколько живет кука (20 минут)
+    maxAge: 20 * 60 * 60 * 1000, // устанавливаем сколько живет кука (20 минут)
     httpOnly: true,
   },
 };
@@ -36,6 +37,7 @@ app.use(morgan('dev'));
 app.use('/', renderView);
 app.use('/user', userRouter); // отвечает за всю логику связанную с юзером (Регистр, Логин, Логаут)
 app.use('/account', customerView);
+app.use('/curier', curierView);
 
 app.get('/*', (req, res) => {
   res.send('404 Page not found');
