@@ -11,7 +11,7 @@ router.post('/login', async (req, res) => {
     if (req.body.flexRadioDefault === 'user') {
       const user = await User.findOne({ where: { login }, raw: true });
       const checkPassword = await bcrypt.compare(password, user.password);
-      if (checkPassword) {
+      if (checkPassword && name === user.name) {
         req.session.user = {
           id: user.id,
           login: user.login,
@@ -20,12 +20,12 @@ router.post('/login', async (req, res) => {
         };
         res.redirect('/account');
       } else {
-        res.redirect('/');
+        res.sendStatus(400);
       }
     } else {
       const user = await Curier.findOne({ where: { login } });
       const checkPassword = await bcrypt.compare(password, user.password);
-      if (checkPassword) {
+      if (checkPassword && name === user.name) {
         req.session.user = {
           id: user.id,
           login: user.login,
@@ -34,10 +34,9 @@ router.post('/login', async (req, res) => {
         };
         res.redirect('/curier');
       } else {
-        res.redirect('/');
+        res.sendStatus(400);
       }
     }
-    // const { login, password } = req.body;
   } catch (error) {
     console.log(error);
     res.sendStatus(400);
@@ -46,7 +45,7 @@ router.post('/login', async (req, res) => {
 
 router.post('/register1', async (req, res) => {
   try {
-    // console.log('req.body----->', req.body);
+    console.log('req.body----->', req.body);
     const login = req.body.userlogin;
     const name = req.body.username;
     const { password } = req.body;
@@ -63,8 +62,6 @@ router.post('/register1', async (req, res) => {
         id: user.id,
         login: user.login,
         name: user.name,
-        // coordinateX: user.coordinateX,
-        // coordinateY: user.coordinateY,
         role: 'user',
       };
     } else {
@@ -79,7 +76,6 @@ router.post('/register1', async (req, res) => {
         role: 'curier',
       };
     }
-    // const { login, password } = req.body;
     res.redirect('/');
   } catch (error) {
     console.log(error);
