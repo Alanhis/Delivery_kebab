@@ -9,6 +9,6 @@ newBtnOrder.addEventListener('click', (event) => {
 
 btnOrder.addEventListener('click', async (event) => {
     event.preventDefault();
-
     console.log('I am working!');
+    window.location = '/curier/moreDetailed';
 })
