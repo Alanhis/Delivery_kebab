@@ -3,7 +3,6 @@ const Layout = require('./Layout');
 const OrderCard = require('./OrderCard');
 
 module.exports = function HomeCurier({ curierOrders, user }) {
-  console.log('CUUUUUUUURIERS', curierOrders);
   return (
     <Layout user={user}>
       <div className='container__order'>

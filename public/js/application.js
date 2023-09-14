@@ -106,7 +106,7 @@ if (addForm) {
     const info = new FormData(addForm);
     info.append('coordinateX', data[0]);
     info.append('coordinateY', data[1]);
-    const responce = await fetch('http://localhost:3000/add', {
+    const responce = await fetch('/curier/newOrder', { 
       method: 'post',
       headers: {
         Accept: 'application/json',
