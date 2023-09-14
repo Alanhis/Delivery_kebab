@@ -6,7 +6,6 @@ if (btnDelete) {
             event.preventDefault();
 
             const { id } = element.dataset;
-            console.log(id);
 
             const response = await fetch('/curier', {
                 method: 'delete',

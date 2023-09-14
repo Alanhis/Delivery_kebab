@@ -42,7 +42,7 @@ module.exports = function Curier( { user, newor, ordered, delivered, completed }
                             <th>{order.id}</th>
                             <td>{order.price}</td>
                             <td>
-                                <button type="button" class="btn btn-light" id='orderStatus'>
+                                <button type="button" className='btn btn-light orderStatus' data-id={order.id}>
                                     Подробнее
                                 </button>
                             </td>
@@ -59,7 +59,7 @@ module.exports = function Curier( { user, newor, ordered, delivered, completed }
                             <th>{order.id}</th>
                             <td>{order.price}</td>
                             <td>
-                                <button type="button" class="btn btn-light" id='deliverStatus'>
+                                <button type="button" className='btn btn-light deliverStatus' data-id={order.id}>
                                     Подробнее
                                 </button>
                             </td>
