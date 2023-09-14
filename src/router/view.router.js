@@ -30,14 +30,28 @@ router.get('/homecurier', async (req, res) => {
   renderTemplate(HomeCurier, { curierOrders, user: req.session?.user }, res);
 });
 
+// router.get('/add', async (req, res) => {
+//   try {
+//     const food = await Item.findAll({ raw: true });
+
+//     renderTemplate(AddSeller, { food, user: req.session.user }, res);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// });
+
 router.post('/add', async (req, res) => {
   try {
-    const {
-      coordinateX, coordinateY, price, discount, foodId,
-    } = req.body;
+    const { coordinateX, coordinateY, price, discount, foodId } = req.body;
     const curierId = req.session.user.id;
     await Order.create({
-      coordinateX, curierId, coordinateY, price, discount, foodId, status: 'New',
+      coordinateX,
+      curierId,
+      coordinateY,
+      price,
+      discount,
+      foodId,
+      status: 'New',
     });
     res.send({ status: 200 });
   } catch (error) {

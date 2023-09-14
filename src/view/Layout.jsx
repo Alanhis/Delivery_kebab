@@ -24,20 +24,20 @@ function Layout({ place, user, title, children }) {
         <link rel='stylesheet' href='/css/main.css' />
         <title>{title}</title>
       </head>
-      <body>
+      <body className='d-flex flex-column h-100'>
         <header>
           <NavBar user={user} />
         </header>
-        <main>
+        <main className='main'>
           <div className='container'>
             <div className='row'>
               <div className='col-12'>{children}</div>
             </div>
           </div>
         </main>
-        {/* <footer>
+        <footer>
           <Footer />
-        </footer> */}
+        </footer>
       </body>
     </html>
   );

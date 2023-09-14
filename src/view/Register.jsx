@@ -11,8 +11,9 @@ function Register() {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          marginTop: '100px',
+          margin: '20px auto',
           gap: '5px',
+          width: '700px',
         }}
       >
         <label htmlFor="userlogin" className="form-label">
@@ -64,7 +65,7 @@ function Register() {
             </label>
           </div>
         </div>
-        <div id="map" data-x="55.758031" data-y="37.710387" style={{ width: '500px', height: '370px' }} />
+        <div id="map" data-x="55.758031" data-y="37.710387" style={{ width: '700px', height: '500px' }} />
         <label htmlFor="telephone" className="form-label">
           Телефон
           <input
@@ -78,7 +79,10 @@ function Register() {
           />
         </label>
         <br />
-        <button className="btn btn-dark" type="submit">
+        <button className="btn btn-dark" type="submit" style={{
+          width: '300px',
+          alignSelf: 'center',
+        }}>
           Войти в систему
         </button>
       </form>
