@@ -6,6 +6,9 @@ const path = require('path');
 const expressSession = require('express-session');
 const FileStore = require('session-file-store')(expressSession);
 const renderView = require('./router/view.router');
+const userRouter = require('./router/user.router');
+const customerView = require('./router/customer.router');
+const curierView = require('./router/curier.router');
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -13,13 +16,13 @@ const PORT = process.env.PORT ?? 3000;
 app.locals = 'title LOCALS';
 
 const sessionConfig = {
-  name: 'Exam2',
+  name: 'Kebab',
   store: new FileStore(), // добавить после установки session-file-store
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: false,
   cookie: {
-    maxAge: 20 * 60 * 1000, // устанавливаем сколько живет кука (20 минут)
+    maxAge: 20 * 60 * 60 * 1000, // устанавливаем сколько живет кука (20 минут)
     httpOnly: true,
   },
 };
@@ -32,6 +35,9 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 app.use('/', renderView);
+app.use('/user', userRouter); // отвечает за всю логику связанную с юзером (Регистр, Логин, Логаут)
+app.use('/account', customerView);
+app.use('/curier', curierView);
 
 app.get('/*', (req, res) => {
   res.send('404 Page not found');
@@ -40,3 +46,7 @@ app.get('/*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server starting on PORT ${PORT}`);
 });
+
+
+// npx sequelize-cli model:generate --name Food --attributes name:string,about:string,img:string
+// npx sequelize-cli seed:generate --name Foods
