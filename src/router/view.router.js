@@ -1,29 +1,35 @@
 require('dotenv').config();
 const express = require('express');
 const renderTemplate = require('../lib/renderTemplate');
-const { Item, Order } = require('../../db/models');
+
 const Home = require('../view/Home');
+const HomeCurier = require('../view/HomeCurier');
 const Login = require('../view/Login');
 const Register = require('../view/Register');
 const AddSeller = require('../view/AddSeller');
 
 const router = express.Router();
 
+const { Order, User, Curier, Item } = require('../../db/models');
+
 router.get('/', async (req, res) => {
-  try {
-    renderTemplate(Home, { user: req.session.user }, res);
-  } catch (error) {
-    console.log(error);
-  }
+  const allNewOrders = await Order.findAll({
+    where: { status: 'New' },
+    include: [{ model: Item }],
+  });
+
+  renderTemplate(Home, { allNewOrders, user: req.session.user }, res);
 });
-router.get('/add', async (req, res) => {
-  try {
-    const food = await Item.findAll({ raw: true });
-    renderTemplate(AddSeller, { food, user: req.session.user }, res);
-  } catch (error) {
-    console.error(error);
-  }
+
+router.get('/homecurier', async (req, res) => {
+  const curierOrders = await Order.findAll({
+    where: { curierId: req.session?.user?.id },
+    include: [{ model: Item }],
+  });
+  console.log('---------------', curierOrders);
+  renderTemplate(HomeCurier, { curierOrders, user: req.session?.user }, res);
 });
+
 router.post('/add', async (req, res) => {
   try {
     const {
@@ -38,6 +44,7 @@ router.post('/add', async (req, res) => {
     console.log(error);
   }
 });
+
 router.get('/login', async (req, res) => {
   renderTemplate(Login, {}, res);
 });

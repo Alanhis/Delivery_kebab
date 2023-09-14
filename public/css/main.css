@@ -3,6 +3,10 @@
   height: 110px;
 }
 
+.container__order {
+margin: 20px 20px;
+}
+
 .container-fluid {
   display: flex;
  justify-content: space-between;
@@ -10,4 +14,15 @@
 
 .user-name__title {
    margin: auto 0;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.navbar-nav {
+  align-items: center;
 }
