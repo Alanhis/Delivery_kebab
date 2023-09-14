@@ -5,9 +5,7 @@ function Login() {
   return (
     <Layout>
       <form
-        action='/user/login'
-        method='POST'
-        className='login-container'
+        className="login-container"
         style={{
           display: 'flex',
           flexDirection: 'column',

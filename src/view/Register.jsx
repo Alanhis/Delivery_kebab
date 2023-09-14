@@ -5,8 +5,6 @@ function Register() {
   return (
     <Layout place>
       <form
-        // action="/user/register1"
-        // method="POST"
         className="register-container"
         style={{
           display: 'flex',

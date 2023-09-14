@@ -77,13 +77,7 @@ module.exports = {
   ], {});
   },
 
-<<<<<<<< HEAD:db/seeders/20230913051956-Items.js
-  async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Items', null, {});
-  },
-========
   async down (queryInterface, Sequelize) {
     await queryInterface.bulkDelete('Items', null, {});
   }
->>>>>>>> dev:db/seeders/20230913052000-Items.js
 };

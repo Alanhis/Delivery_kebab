@@ -1,8 +1,24 @@
-const btnDelete = document.getElementById('deleteNewOrder');
+const btnDelete = document.querySelectorAll('.deleteNewOrder');
 
-btnDelete.addEventListener('click', async (event) => {
-    event.preventDefault();
+if (btnDelete) {
+    btnDelete.forEach(element => {
+        element.addEventListener('click', async (event) => {
+            event.preventDefault();
 
-    console.log('delete');
+            const { id } = element.dataset;
 
-})
+            const response = await fetch('/curier', {
+                method: 'delete',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify( { id } ),
+            });
+
+            if (response.status === 200) {
+                window.location = '/curier';
+            }
+        })
+    });   
+}

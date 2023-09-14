@@ -6,7 +6,6 @@ const Home = require('../view/Home');
 const HomeCurier = require('../view/HomeCurier');
 const Login = require('../view/Login');
 const Register = require('../view/Register');
-const AddSeller = require('../view/AddSeller');
 
 const router = express.Router();
 
@@ -26,7 +25,6 @@ router.get('/homecurier', async (req, res) => {
     where: { curierId: req.session?.user?.id },
     include: [{ model: Item }],
   });
-  console.log('---------------', curierOrders);
   renderTemplate(HomeCurier, { curierOrders, user: req.session?.user }, res);
 });
 
