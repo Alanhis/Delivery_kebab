@@ -14,10 +14,11 @@ module.exports = function OrderCard({ order, user }) {
             {order?.price} руб
           </span>{' '}
         </p>
-        <p className='card-text'>
-          Цена со скидкой: {order?.discount} руб
-        </p>
-        <button type='button' className='btn btn-dark' disabled={!user}>
+        <p className='card-text'>Цена со скидкой: {order?.price - order?.price * (order?.discount / 100)} руб</p>
+        <button
+          type='button'
+          className='btn btn-dark re_buy'
+          disabled={!user || user.role === 'curier'} data-id={order.id}>
           Выкупить
         </button>
       </div>

@@ -33,23 +33,36 @@ module.exports = function NavBar({ user }) {
                 Меню
               </a>
             ) : (
-              <a className='nav-link active fs-4' aria-current='page' href='/'>
+              <a
+                className='nav-link active fs-4'
+                aria-current='page'
+                href='/'>
                 Меню
               </a>
             )}
             {user ? (
               <>
-                <a className='nav-link fs-4' href='/curier'>
-                  Личный кабинет
-                </a>
+                {user?.role === 'curier' ? (
+                  <a className='nav-link fs-4' href='/curier'>
+                    Личный кабинет
+                  </a>
+                ) : (
+                  <a className='nav-link fs-4' href='/account'>
+                    Личный кабинет
+                  </a>
+                )}
+
                 <a className='nav-link fs-4' href='/user/logout'>
                   Выход
                 </a>
                 <div className='user-name mx-5'>
-                  <p className='user-name__title fs-4'> 
-                    Привет, {user?.role === 'curier' ? 
-                      `курьер ${user.name}` : 
-                      `клиент ${user.name}`} !</p>
+                  <p className='user-name__title fs-4'>
+                    Привет,{' '}
+                    {user?.role === 'curier'
+                      ? `курьер ${user.name}`
+                      : `клиент ${user.name}`}{' '}
+                    !
+                  </p>
                 </div>
               </>
             ) : (
