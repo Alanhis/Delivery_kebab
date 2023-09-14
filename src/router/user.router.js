@@ -15,6 +15,7 @@ router.post('/login', async (req, res) => {
         req.session.user = {
           id: user.id,
           login: user.login,
+          name: user.name,
           role: 'user',
         };
         res.redirect('/');
@@ -22,15 +23,16 @@ router.post('/login', async (req, res) => {
         res.redirect('/');
       }
     } else {
-      const user = await Curier.findOne({ where: { login }, raw: true });
+      const user = await Curier.findOne({ where: { login } });
       const checkPassword = await bcrypt.compare(password, user.password);
       if (checkPassword) {
         req.session.user = {
           id: user.id,
           login: user.login,
+          name: user.name,
           role: 'curier',
         };
-        res.redirect('/');
+        res.redirect('/homecurier');
       } else {
         res.redirect('/');
       }

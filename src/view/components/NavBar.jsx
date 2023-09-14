@@ -1,6 +1,7 @@
 const React = require('react');
 
 module.exports = function NavBar({ user }) {
+  // console.log("NavUser", user);
   return (
     <nav className='navbar navbar-expand-lg bg-body-tertiary '>
       <div className='container-fluid d-flex '>
@@ -24,15 +25,24 @@ module.exports = function NavBar({ user }) {
         </button>
         <div className='collapse navbar-collapse' id='navbarNavAltMarkup'>
           <div className='navbar-nav' style={{ margin: '0 auto' }}>
-            <a className='nav-link active fs-4' aria-current='page' href='#'>
-              Меню
-            </a>
+            {user && user?.role === 'curier' ? (
+              <a
+                className='nav-link active fs-4'
+                aria-current='page'
+                href='/homecurier'>
+                Меню
+              </a>
+            ) : (
+              <a className='nav-link active fs-4' aria-current='page' href='/'>
+                Меню
+              </a>
+            )}
             {user ? (
               <>
                 <a className='nav-link fs-4' href='/acount'>
                   Личный кабинет
                 </a>
-                <a className="nav-link fs-4" href="/user/logout">
+                <a className='nav-link fs-4' href='/user/logout'>
                   Выход
                 </a>
                 <div className='user-name mx-5'>

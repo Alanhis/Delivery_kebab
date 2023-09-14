@@ -3,26 +3,39 @@ const express = require('express');
 const renderTemplate = require('../lib/renderTemplate');
 
 const Home = require('../view/Home');
+const HomeCurier = require('../view/HomeCurier');
 const Login = require('../view/Login');
 const Register = require('../view/Register');
 
 const router = express.Router();
 
-const { Order, User, Item } = require('../../db/models');
+const { Order, User, Curier, Item } = require('../../db/models');
 
 router.get('/', async (req, res) => {
   const allNewOrders = await Order.findAll({
     where: { status: 'New' },
     include: [{ model: Item }],
   });
-  const newOrdersForCourier = await Order.findAll({
-    where: {
-      curierId: req.session?.user?.id,
-      status: 'New',
-    },
+
+  renderTemplate(Home, { allNewOrders, user: req.session.user }, res);
+});
+
+router.get('/homecurier', async (req, res) => {
+  const curierOrders = await Order.findAll({
+    where: { curierId: req.session?.user?.id },
     include: [{ model: Item }],
   });
-  renderTemplate(Home, { allNewOrders, newOrdersForCourier, user: req.session.user }, res);
+  console.log('---------------', curierOrders);
+  renderTemplate(HomeCurier, { curierOrders, user: req.session?.user }, res);
+  // if (req.session.user.role === 'curier') {
+  //   const curierOrders = await Order.findAll({
+  //     where: { user_id: req.session?.user?.id },
+  //     include: [{ model: Item }],
+  //   });
+  //   renderTemplate(HomeCurier, { curierOrders }, res);
+  // } else {
+  //   renderTemplate(Login, {}, res);
+  // }
 });
 
 router.get('/login', async (req, res) => {
